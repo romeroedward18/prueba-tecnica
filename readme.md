@@ -52,11 +52,12 @@ La aplicación estará disponible en: `http://localhost:3000`
 
 ## Estructura del Proyecto
 
+.
 ├── bin/
-│ └── www # Punto de entrada de la aplicación
+│   └── www # Punto de entrada de la aplicación
 ├── views/
-│ ├── index.ejs # Vista principal
-│ └── error.ejs # Vista de errores
+│   ├── index.ejs # Vista principal
+│   └── error.ejs # Vista de errores
 ├── app.js # Configuración principal de Express
 ├── package.json # Dependencias y scripts
 └── README.md # Este archivo
