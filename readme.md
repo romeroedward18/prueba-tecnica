@@ -22,7 +22,7 @@ Sistema para la gestión de usuarios, empresas y puntos de venta, permitiendo es
 1. Clonar el repositorio:
 
 ```bash
-git clone <url-del-repositorio>
+git clone https://github.com/romeroedward18/prueba-tecnica.git
 cd <nombre-del-directorio>
 ```
 
