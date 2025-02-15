@@ -146,6 +146,19 @@ app.post("/empresas", async (req, res) => {
 app.post("/puntos-venta", async (req, res) => {
   try {
     const { nombre, direccion } = req.body;
+    
+    // Verificar si existe un punto de venta con el mismo nombre
+    const [existingPoints] = await pool.query(
+      "SELECT * FROM puntos_venta WHERE LOWER(nombre) = LOWER(?)",
+      [nombre]
+    );
+    
+    if (existingPoints.length > 0) {
+      return res.status(400).json({ 
+        error: "Ya existe un punto de venta con este nombre" 
+      });
+    }
+
     const [result] = await pool.query(
       "INSERT INTO puntos_venta (nombre, direccion) VALUES (?, ?)",
       [nombre, direccion]
@@ -155,7 +168,9 @@ app.post("/puntos-venta", async (req, res) => {
     res.status(201).json(nuevoPunto);
   } catch (error) {
     console.error(error);
-    res.status(500).send("Error al crear el punto de venta");
+    res.status(500).json({ 
+      error: "Error al crear el punto de venta" 
+    });
   }
 });
 
