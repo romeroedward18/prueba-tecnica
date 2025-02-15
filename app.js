@@ -39,7 +39,6 @@ const io = new Server(httpServer);
 
 io.on("connection", (socket) => {
   console.log("Cliente conectado");
-  console.log("Puerto 3000");
 });
 
 // Rutas
@@ -59,6 +58,31 @@ app.get("/", async (req, res) => {
 app.post("/usuarios", async (req, res) => {
   try {
     const { nombre, email } = req.body;
+    
+    // Verificar si existe un usuario con el mismo nombre
+    const [existingUsers] = await pool.query(
+      "SELECT * FROM usuarios WHERE LOWER(nombre) = LOWER(?)",
+      [nombre]
+    );
+    
+    if (existingUsers.length > 0) {
+      return res.status(400).json({ 
+        error: "Ya existe un usuario con este nombre" 
+      });
+    }
+
+    // Verificar si existe un usuario con el mismo email
+    const [existingEmails] = await pool.query(
+      "SELECT * FROM usuarios WHERE email = ?",
+      [email]
+    );
+    
+    if (existingEmails.length > 0) {
+      return res.status(400).json({ 
+        error: "Ya existe un usuario con este email" 
+      });
+    }
+
     const [result] = await pool.query(
       "INSERT INTO usuarios (nombre, email) VALUES (?, ?)",
       [nombre, email]
@@ -68,7 +92,9 @@ app.post("/usuarios", async (req, res) => {
     res.status(201).json(nuevoUsuario);
   } catch (error) {
     console.error(error);
-    res.status(500).send("Error al crear el usuario");
+    res.status(500).json({ 
+      error: "Error al crear el usuario" 
+    });
   }
 });
 
@@ -76,6 +102,31 @@ app.post("/usuarios", async (req, res) => {
 app.post("/empresas", async (req, res) => {
   try {
     const { nombre, nit } = req.body;
+    
+    // Verificar si existe una empresa con el mismo nombre
+    const [existingCompanies] = await pool.query(
+      "SELECT * FROM empresas WHERE LOWER(nombre) = LOWER(?)",
+      [nombre]
+    );
+    
+    if (existingCompanies.length > 0) {
+      return res.status(400).json({ 
+        error: "Ya existe una empresa con este nombre" 
+      });
+    }
+
+    // Verificar si existe una empresa con el mismo NIT
+    const [existingNits] = await pool.query(
+      "SELECT * FROM empresas WHERE nit = ?",
+      [nit]
+    );
+    
+    if (existingNits.length > 0) {
+      return res.status(400).json({ 
+        error: "Ya existe una empresa con este NIT" 
+      });
+    }
+
     const [result] = await pool.query(
       "INSERT INTO empresas (nombre, nit) VALUES (?, ?)",
       [nombre, nit]
@@ -85,7 +136,9 @@ app.post("/empresas", async (req, res) => {
     res.status(201).json(nuevaEmpresa);
   } catch (error) {
     console.error(error);
-    res.status(500).send("Error al crear la empresa");
+    res.status(500).json({ 
+      error: "Error al crear la empresa" 
+    });
   }
 });
 
