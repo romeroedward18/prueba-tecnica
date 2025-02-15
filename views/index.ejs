@@ -8,10 +8,22 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <style>
-        .container { padding-top: 20px; }
-        .card-panel { padding: 20px; }
-        .collection-item { display: flex; justify-content: space-between; }
-        .tabs-content { height: auto !important; }
+        .container {
+            padding-top: 20px;
+        }
+
+        .card-panel {
+            padding: 20px;
+        }
+
+        .collection-item {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .tabs-content {
+            height: auto !important;
+        }
     </style>
 </head>
 
@@ -56,15 +68,21 @@
                 </div>
 
                 <ul class="collection with-header" id="usuariosList">
-                    <li class="collection-header"><h4>Usuarios</h4></li>
-                    <% usuarios.forEach(usuario => { %>
+                    <li class="collection-header">
+                        <h4>Usuarios</h4>
+                    </li>
+                    <% usuarios.forEach(usuario=> { %>
                         <li class="collection-item">
                             <div>
-                                <span class="title"><%= usuario.nombre %></span>
-                                <p><%= usuario.email %></p>
+                                <span class="title">
+                                    <%= usuario.nombre %>
+                                </span>
+                                <p>
+                                    <%= usuario.email %>
+                                </p>
                             </div>
                         </li>
-                    <% }); %>
+                        <% }); %>
                 </ul>
             </div>
 
@@ -91,30 +109,31 @@
                 </div>
 
                 <div class="row">
-                    <% empresas.forEach(empresa => { %>
+                    <% empresas.forEach(empresa=> { %>
                         <div class="col s12 m6">
                             <div class="card">
                                 <div class="card-content">
-                                    <span class="card-title"><%= empresa.nombre %></span>
-                                    <p>NIT: <%= empresa.nit %></p>
-                                    
+                                    <span class="card-title">
+                                        <%= empresa.nombre %>
+                                    </span>
+                                    <p>NIT: <%= empresa.nit %>
+                                    </p>
+
                                     <div class="section">
                                         <h6>Usuarios Asociados</h6>
                                         <ul class="collection usuarios-empresa" data-empresa-id="<%= empresa.id %>">
-                                            <!-- Los usuarios se cargarán dinámicamente -->
                                         </ul>
                                     </div>
-                                    
+
                                     <div class="section">
                                         <h6>Puntos de Venta</h6>
                                         <ul class="collection puntos-venta-empresa" data-empresa-id="<%= empresa.id %>">
-                                            <!-- Los puntos de venta se cargarán dinámicamente -->
                                         </ul>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    <% }); %>
+                        <% }); %>
                 </div>
             </div>
 
@@ -141,15 +160,21 @@
                 </div>
 
                 <ul class="collection with-header" id="puntosVentaList">
-                    <li class="collection-header"><h4>Puntos de Venta</h4></li>
-                    <% puntosVenta.forEach(punto => { %>
+                    <li class="collection-header">
+                        <h4>Puntos de Venta</h4>
+                    </li>
+                    <% puntosVenta.forEach(punto=> { %>
                         <li class="collection-item">
                             <div>
-                                <span class="title"><%= punto.nombre %></span>
-                                <p><%= punto.direccion %></p>
+                                <span class="title">
+                                    <%= punto.nombre %>
+                                </span>
+                                <p>
+                                    <%= punto.direccion %>
+                                </p>
                             </div>
                         </li>
-                    <% }); %>
+                        <% }); %>
                 </ul>
             </div>
 
@@ -164,18 +189,22 @@
                                 <div class="input-field">
                                     <select name="usuario_id" required>
                                         <option value="" disabled selected>Seleccione un usuario</option>
-                                        <% usuarios.forEach(usuario => { %>
-                                            <option value="<%= usuario.id %>"><%= usuario.nombre %></option>
-                                        <% }); %>
+                                        <% usuarios.forEach(usuario=> { %>
+                                            <option value="<%= usuario.id %>">
+                                                <%= usuario.nombre %>
+                                            </option>
+                                            <% }); %>
                                     </select>
                                     <label>Usuario</label>
                                 </div>
                                 <div class="input-field">
                                     <select name="empresa_id" required>
                                         <option value="" disabled selected>Seleccione una empresa</option>
-                                        <% empresas.forEach(empresa => { %>
-                                            <option value="<%= empresa.id %>"><%= empresa.nombre %></option>
-                                        <% }); %>
+                                        <% empresas.forEach(empresa=> { %>
+                                            <option value="<%= empresa.id %>">
+                                                <%= empresa.nombre %>
+                                            </option>
+                                            <% }); %>
                                     </select>
                                     <label>Empresa</label>
                                 </div>
@@ -199,18 +228,22 @@
                                 <div class="input-field">
                                     <select name="empresa_id" required>
                                         <option value="" disabled selected>Seleccione una empresa</option>
-                                        <% empresas.forEach(empresa => { %>
-                                            <option value="<%= empresa.id %>"><%= empresa.nombre %></option>
-                                        <% }); %>
+                                        <% empresas.forEach(empresa=> { %>
+                                            <option value="<%= empresa.id %>">
+                                                <%= empresa.nombre %>
+                                            </option>
+                                            <% }); %>
                                     </select>
                                     <label>Empresa</label>
                                 </div>
                                 <div class="input-field">
                                     <select name="punto_venta_id" required>
                                         <option value="" disabled selected>Seleccione un punto de venta</option>
-                                        <% puntosVenta.forEach(punto => { %>
-                                            <option value="<%= punto.id %>"><%= punto.nombre %></option>
-                                        <% }); %>
+                                        <% puntosVenta.forEach(punto=> { %>
+                                            <option value="<%= punto.id %>">
+                                                <%= punto.nombre %>
+                                            </option>
+                                            <% }); %>
                                     </select>
                                     <label>Punto de Venta</label>
                                 </div>
@@ -229,10 +262,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             // Inicializar componentes de Materialize
             M.AutoInit();
-            
+
             // Conectar Socket.IO
             const socket = io();
 
@@ -269,7 +302,7 @@
             });
 
             // Eventos Socket.IO
-            socket.on('nuevoUsuario', function(usuario) {
+            socket.on('nuevoUsuario', function (usuario) {
                 const lista = document.getElementById('usuariosList');
                 const item = document.createElement('li');
                 item.className = 'collection-item';
@@ -280,11 +313,11 @@
                     </div>
                 `;
                 lista.appendChild(item);
-                M.toast({html: 'Nuevo usuario agregado'});
+                M.toast({ html: 'Nuevo usuario agregado' });
             });
 
             // Inicializar formularios
-            addFormSubmitListener('usuarioForm', '/usuarios', () => {});
+            addFormSubmitListener('usuarioForm', '/usuarios', () => { });
             addFormSubmitListener('empresaForm', '/empresas', () => {
                 window.location.reload(); // Recargar para ver la nueva empresa
             });
@@ -292,44 +325,44 @@
                 window.location.reload(); // Recargar para ver el nuevo punto de venta
             });
             addFormSubmitListener('usuarioEmpresaForm', '/usuarios-empresas', () => {
-                M.toast({html: 'Asociación creada exitosamente'});
+                M.toast({ html: 'Asociación creada exitosamente' });
                 document.querySelectorAll('[data-empresa-id]').forEach(el => {
                     cargarDatosEmpresa(el.dataset.empresaId);
                 });
             });
             addFormSubmitListener('empresaPuntoVentaForm', '/empresas-puntos-venta', () => {
-                M.toast({html: 'Asociación creada exitosamente'});
+                M.toast({ html: 'Asociación creada exitosamente' });
                 document.querySelectorAll('[data-empresa-id]').forEach(el => {
                     cargarDatosEmpresa(el.dataset.empresaId);
                 });
             });
         });
 
-        // Función mejorada para manejar formularios
+        // Función para manejar formularios
         function addFormSubmitListener(formId, endpoint, successCallback) {
             document.getElementById(formId).addEventListener('submit', async (e) => {
                 e.preventDefault();
                 const formData = new FormData(e.target);
                 const data = Object.fromEntries(formData.entries());
-                
+
                 try {
                     const response = await fetch(endpoint, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify(data),
                     });
-                    
+
                     if (response.ok) {
                         const result = await response.json();
                         successCallback(result);
                         e.target.reset();
-                        M.updateTextFields(); // Actualizar campos de Materialize
+                        M.updateTextFields();
                     } else {
-                        M.toast({html: 'Error al enviar los datos'});
+                        M.toast({ html: 'Error al enviar los datos' });
                     }
                 } catch (error) {
                     console.error('Error:', error);
-                    M.toast({html: 'Error de conexión'});
+                    M.toast({ html: 'Error de conexión' });
                 }
             });
         }
